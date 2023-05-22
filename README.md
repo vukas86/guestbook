@@ -6,7 +6,7 @@ A Guestbook application is an application that enables visitors to leave a messa
 
 **Client:** React, React Router
 
-**Server:** NodeJS, MySQL
+**Server:** NodeJS, ExpressJs, nodemon, MySQL
 
 # Getting Started with Create React App
 

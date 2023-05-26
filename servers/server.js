@@ -1,10 +1,9 @@
 import express from "express";
-// import mysql from "mysql";
-import { createConnection } from "mysql";
+import mysql from "mysql2";
 
 const app = express();
 
-const connection = createConnection({
+const connection = mysql.createConnection({
   host: "localhost:3306",
   user: "root",
   password: "mxp@1511delije",
@@ -24,7 +23,7 @@ app.use(express.json());
 app.post("/api/messages", (req, res) => {
   const { name, message } = req.body;
 
-  const sql = "INSERT INTO messages (name,message) VALUES(?, ?)";
+  const sql = "INSERT INTO guestbook.messages (name,message) VALUES(?, ?)";
   connection.query(sql, [name, message], (err, results) => {
     if (err) {
       console.error(`Error inserting data into table:, ${err}`);

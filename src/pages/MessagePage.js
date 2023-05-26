@@ -39,10 +39,6 @@ function MessagePage(props) {
 
     setMessage("");
     setName("");
-
-    // setTimeout(() => {
-    //   setIsSubmitting(true);
-    // }, 2000);
   };
   return (
     <form onSubmit={submitHandler}>
@@ -84,11 +80,3 @@ function MessagePage(props) {
 }
 
 export default MessagePage;
-
-//   const data = await response.json();
-//   console.log(data);
-// } catch (error) {
-//   console.error(error);
-
-//   setError(true);
-// }

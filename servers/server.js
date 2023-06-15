@@ -1,40 +1,18 @@
-import express from "express";
-import mysql from "mysql2";
-
+const express = require("express");
 const app = express();
+const path = require("path");
 
-const connection = mysql.createConnection({
-  host: "localhost:3306",
-  user: "root",
-  password: "mxp@1511delije",
-  database: "guestbook",
+app.use(express.static(path.join(__dirname, "../build")));
+
+let messages = [
+  { name: "Alex Mourinho", message: "good site" },
+  { name: "Sara Parker", message: "greate ecxpeadd" },
+];
+
+app.get("/messages_data", (req, res) => {
+  res.send(messages);
 });
 
-connection.connect((err) => {
-  if (err) {
-    console.error(`Error to connect to MySQL database:, ${err}`);
-    return;
-  }
-  console.log("Connected to MySql database");
-});
-
-app.use(express.json());
-
-app.post("/api/messages", (req, res) => {
-  const { name, message } = req.body;
-
-  const sql = "INSERT INTO guestbook.messages (name,message) VALUES(?, ?)";
-  connection.query(sql, [name, message], (err, results) => {
-    if (err) {
-      console.error(`Error inserting data into table:, ${err}`);
-      res.status(500).json({ error: "An error occured" });
-      return;
-    }
-    res.json({ message: "Data inserted succesfully" });
-  });
-});
-
-const port = 3000;
-app.listen(port, () => {
-  console.log(`Server is running on a port ${port}`);
+const server = app.listen(3000, () => {
+  console.log("server is listening on port", server.address().port);
 });

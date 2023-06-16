@@ -37,17 +37,18 @@ function Guestbook() {
         <p>See what people wrote about us and feel free to leave a message</p>
       </section>
       <section className={styles.msgSection}>
-        {messages.map((message) => {
-          return (
-            <ul className={styles.messages}>
-              <li>
-                <p>"{message.message}"</p>
-                <br />
-                <span>{message.name}</span>
-              </li>
-            </ul>
-          );
-        })}
+        {Array.isArray(messages) &&
+          messages.map((message) => {
+            return (
+              <ul className={styles.messages}>
+                <li>
+                  <p>"{message.message}"</p>
+                  <br />
+                  <span>{message.name}</span>
+                </li>
+              </ul>
+            );
+          })}
         <button
           type="button"
           className={styles.btn1}

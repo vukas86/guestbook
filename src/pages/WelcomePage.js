@@ -41,7 +41,7 @@ function Guestbook() {
           return (
             <ul className={styles.messages}>
               <li>
-                <p>{message.message}</p>
+                <p>"{message.message}"</p>
                 <br />
                 <span>{message.name}</span>
               </li>

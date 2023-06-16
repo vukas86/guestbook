@@ -11,35 +11,54 @@ function MessagePage(props) {
   const [error, setError] = useState(false);
   const [successMessage, setSuccessMessage] = useState(false);
 
+  // function postMessage(message) {
+  //   fetch("http://localhost:3000/messages_data", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(message),
+  //   });
+  // }
+
   const submitHandler = async (e) => {
     e.preventDefault();
+    fetch("http://localhost:3000/messages_data", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ name, message }),
+    });
 
-    try {
-      const response = await fetch("/api/messages", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ name, message }),
-      });
+    // try {
+    //   const response = await fetch("http://localhost:3000/messages_data", {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify(message),
+    //   });
 
-      if (response.ok) {
-        console.log("Message sent succecfully!");
-        setSuccessMessage(true);
-      } else {
-        console.log("Failed to send message");
-        setError(true);
-      }
-    } catch (err) {
-      console.error(err);
-      setError(true);
-    }
+    //   if (response.ok) {
+    //     console.log("Message sent succesfully!");
+    //     setSuccessMessage(true);
+    //   } else {
+    //     console.log("Failed to send message");
+    //     setError(true);
+    //   }
+    // } catch (err) {
+    //   console.error(err);
+    //   setError(true);
+    // }
+    console.log({ name, message });
 
     setIsSubmitting(false);
 
     setMessage("");
     setName("");
   };
+
   return (
     <form onSubmit={submitHandler}>
       <div>

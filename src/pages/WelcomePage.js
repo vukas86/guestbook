@@ -15,8 +15,10 @@ function Guestbook() {
         throw new Error("Request failed with status: " + response.status);
       }
       const data = await response.json();
-      console.log(data);
-      setMessages(data);
+
+      const lastTenMsgs = data.slice(-10).reverse();
+
+      setMessages(lastTenMsgs);
     } catch (error) {
       console.error("Error fetching messages:", error);
     }
